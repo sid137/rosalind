@@ -1,4 +1,9 @@
 CFLAGS=-g -O2 -Wall -Wextra -Isrc -rdynamic -DNDEBUG $(OPTFLAGS)
-PROGRAMS=dna
+SOURCES=$(wildcard *.c)
+EXEC=$(patsubst %.c,%,$(SOURCES))
 
-all: $(PROGRAMS)
+all: $(EXEC)
+
+
+clean:
+	rm $(EXEC)
