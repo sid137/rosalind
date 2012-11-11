@@ -4,13 +4,14 @@ EXEC=$(patsubst %.c,%,$(SOURCES))
 LIBRARIES=print_library
 LIBRARIES_STATIC=$(patsubst %, %.o, $(LIBRARIES))
 
-all: $(EXEC) libs
+all: print_library $(EXEC) libs 
 
 
 clean:
+	rm *.a *.o
 	rm $(EXEC)
 
 libs: $(LIBRARIES_STATIC)
 
-print_library:
+print_library: libs
 	ar rcs libprinting.a print_library.o

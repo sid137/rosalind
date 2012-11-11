@@ -14,13 +14,6 @@ int permutation_count(int number){
   return count;
 }
 
-void swap(int *list, int a, int b){
-  int temp;
-  temp = list[a];
-  list[a] = b;
-  list[b] = temp;
-  return;
-}
 
 void permutation(int *list){
 

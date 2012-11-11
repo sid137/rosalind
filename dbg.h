@@ -35,6 +35,7 @@
 
 
 #define remove_newline(A) if (A[strlen(A)-1] == '\n') {A[strlen(A)-1] = '\0'; }
+#define swap(A, B)  do { A ^= B; B ^= A; A ^= B;  } while (0)
 #define true 1
 #define false 0
 #endif

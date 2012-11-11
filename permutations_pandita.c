@@ -10,44 +10,55 @@
 #include "dbg.h"
 #include "print_library.h"
 
-void *reverse_list(int *list){
-  int length = sizeof(list)/sizeof(int);
-  int i;
-  int *new_list = malloc(sizeof(list));
-
-  for (i = length-1; i > 0; i--){
-    new_list[length-1-i] = list[i]; 
-  }
-
-  free(new_list);
-}
 
 int main(){
   int list[3] = {1,2,3};
 
 
   int i, j, k;
-  bool permuted = true;
+  int permutation_number = 2;
+  bool imax_found, permuted = true;
 
   int length = sizeof(list)/sizeof(int);
+  printf("Length is %d\n", length);
+  printf("Starting list: \n");
+  printf("1: ");
+  print_list(list, length);
   while(permuted) {
     int imax = 0;
-    int jmax = 0;
-      for (i = 0; i < length-2; i++){
-        if (list[i] < list[i+1]) {
-          imax = i;
-        }
+    int jmax = length-1;
+    imax_found = false;
+    for (i = 0; i < length-1; i++){
+      if (list[i] < list[i+1]) {
+        imax = i;
+        imax_found = true;
       }
-      if (imax == 0) {
-        reverse_list(list);
-        permuted = false;
+    }
+    printf("imax: %d i: %d  imax_found: %d  jmax:%d\n", imax, i, imax_found, jmax);
+    if (!imax_found) {
+      reverse_list(list, length);
+      permuted = false;
+      printf("Found lexicographically least permutation:\n"); 
+      print_list(list, length);
+      break;
+    }
+    for (j = length-1; j > imax; j--){
+      if (list[j] > list[imax]) {
+        jmax = j;
+        break;
       }
+    }
+    printf("imax: %d i: %d  imax_found: %d  jmax:%d\n", imax, i, imax_found, jmax);
+    printf("S: ");
+    swap(list[imax], list[jmax]);
+    print_list(list, length);
+    printf("R: ");
+    reverse_list_from(list, imax+1, length);
+    print_list(list, length);
+    printf("%d: ", permutation_number++);
+    print_list(list, length);
 
   }
 
-  for (k = 0; k < 3; k++){
-    printf("%d ", list[k]);
-  }
-  print_newline;
   return 0;
 }
