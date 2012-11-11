@@ -33,4 +33,8 @@
 
 #define check_debug(A, M, ...) if(!(A)) { debug(M, ##__VA_ARGS__); errno=0; goto error; }
 
+
+#define remove_newline(A) if (A[strlen(A)-1] == '\n') {A[strlen(A)-1] = '\0'; }
+#define true 1
+#define false 0
 #endif
