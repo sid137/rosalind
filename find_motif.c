@@ -33,7 +33,7 @@ int main(){
   char no_match;
   m = 0;
   int needle_size = strnlen(needle, STRING_SIZE);
-  for (i = 0; i < strlen(haystack) - needle_size + 1; i++) {
+  for (i = 0; i < (int) strlen(haystack) - needle_size + 1; i++) {
     no_match = false;
     if (haystack[i] == needle[0] && haystack[i+needle_size-1] == needle[needle_size-1]) {
       j = 0;

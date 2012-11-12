@@ -63,7 +63,7 @@ int main(){
   printf("The data has length %d: %s\n",(int) strlen(input), input);
 
   char tmp_codon[4];
-  for (i = 0; i < strlen(input)-1; i += 3) {
+  for (i = 0; i < (int) strlen(input)-1; i += 3) {
     strncpy(tmp_codon, &input[i], 3);
     tmp_codon[3] = '\0';
     printf("%d: %s\n", i, tmp_codon); 
@@ -72,7 +72,7 @@ int main(){
   printf("Encoded protein string:\n"); 
 
   char *protein;
-  for (i = 0; i < strlen(input)-1; i += 3) {
+  for (i = 0; i < (int) strlen(input)-1; i += 3) {
     strncpy(tmp_codon, &input[i], 3);
     tmp_codon[3] = '\0';
     protein = encode_codon(tmp_codon, codons);

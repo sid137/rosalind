@@ -1,43 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "dbg.h"
+#include "permutation.h"
 
 /* O(n) */
-int permutation_count(int number){
-
-  int i;
-  int count = 1;
-  for (i = 1; i <= number; i++) {
-    count *= i;
-  }
-
-  return count;
-}
-
-
-void permutation(int *list){
-
-}
 
 void print_permutations(int number){
-  int *list = malloc(sizeof(int)*number);
-  int number_of_permutations = permutation_count(number);
-  int i;
-  memset(list, 0, number);
+  int length = number;
+  int *list = malloc(sizeof(int)*length);
+  memset(list, 0, length);
 
-  /* O(n) */
-  for (i = 0; i < number; i++){
+  /* Fill list from 1 to n */
+  int i;
+  for (i = 0; i < length; i++){
     list[i] = i+1;
   }
 
-  for (i = 0; i < number; i++){
-    printf("%d", list[i]);
-    /* perm = i + perm(list/i); */
-  }
-
+  print_all_permutations(list, length); 
 
   free(list); 
 }
+
 int main(){
   int number;
 
@@ -47,7 +30,6 @@ int main(){
   printf("The permutations of %d are:\n", number); 
   printf("%d\n", permutation_count(number));
   print_permutations(number);
-  printf("\n"); 
 
   return 0;
 }
